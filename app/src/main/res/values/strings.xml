@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Shop App</string>
+    <string name="mainScreenTitle">Shop</string>
+    <string name="searchHint">Search</string>
+    <string name="addCartTitle">Add to cart</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
