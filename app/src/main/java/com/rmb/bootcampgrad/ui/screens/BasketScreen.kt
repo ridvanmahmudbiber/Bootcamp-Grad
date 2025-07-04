@@ -5,37 +5,44 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.rmb.bootcampgrad.R
-import com.rmb.bootcampgrad.data.entity.Products
 import com.rmb.bootcampgrad.databinding.BasketScreenBinding
-import com.rmb.bootcampgrad.ui.adapter.MyCartProductsAdapter
-import com.rmb.bootcampgrad.ui.adapter.ProductsAdapter
+import com.rmb.bootcampgrad.ui.adapter.BasketProductsAdapter
+import com.rmb.bootcampgrad.ui.viewmodel.BasketViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BasketScreen : Fragment() {
     private lateinit var binding: BasketScreenBinding
+    private lateinit var viewModel: BasketViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = BasketScreenBinding.inflate(inflater, container, false)
 
-        val productsList = ArrayList<Products>()
-        val p1 = Products(1,"Saat", "yildiz","Saat",100,"Rolex")
-        val p2 = Products(2,"Çanta","yildiz","Saat",500,"Rolex")
-        val p3 = Products(3,"Kalem","yildiz","Saat",250,"Rolex")
-        productsList.add(p1)
-        productsList.add(p2)
-        productsList.add(p3)
+        viewModel.productsList.observe(viewLifecycleOwner) {
+            val basketProductsAdapter = BasketProductsAdapter(requireContext(), it, viewModel)
+            binding.recyclerViewMyCart.adapter = basketProductsAdapter
 
-        val myCartAdapter = MyCartProductsAdapter(requireContext(), productsList)
-        binding.recyclerViewMyCart.adapter = myCartAdapter
+        }
 
         binding.recyclerViewMyCart.layoutManager = LinearLayoutManager(requireContext())
 
 
-
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel: BasketViewModel by viewModels()
+        viewModel = tempViewModel
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadBasketProducts()
     }
 }

@@ -8,8 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rmb.bootcampgrad.data.entity.Products
 import com.rmb.bootcampgrad.databinding.MainCardDesignBinding
 import com.rmb.bootcampgrad.ui.screens.MainScreenDirections
+import com.rmb.bootcampgrad.ui.viewmodel.BasketViewModel
+import com.rmb.bootcampgrad.ui.viewmodel.MainViewModel
 
-class ProductsAdapter(var mContext: Context, var productsList:List<Products>)
+class ProductsAdapter(var mContext: Context,
+                      var productsList:List<Products>,
+                      var viewModel: MainViewModel
+)
     : RecyclerView.Adapter<ProductsAdapter.MainCardDesignHolder>() {
 
     inner class MainCardDesignHolder(var binding: MainCardDesignBinding) : RecyclerView.ViewHolder(binding.root)
