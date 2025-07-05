@@ -16,12 +16,12 @@ class MainViewModel @Inject constructor(var productsRepository: ProductsReposito
     var productsList = MutableLiveData<List<Products>>()
 
     init {
-        loadProducts()
+        loadProducts("")
     }
 
-     fun loadProducts() {
+    fun loadProducts(category: String?) {
         viewModelScope.launch {
-            productsList.value = productsRepository.loadProducts()
+            productsList.value = productsRepository.loadProducts(category)
         }
     }
 
@@ -32,4 +32,6 @@ class MainViewModel @Inject constructor(var productsRepository: ProductsReposito
             println("Result : ${productsList.value}")
         }
     }
+
+
 }

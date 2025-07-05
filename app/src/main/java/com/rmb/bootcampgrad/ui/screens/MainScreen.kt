@@ -21,7 +21,7 @@ class MainScreen : Fragment() {
     private lateinit var binding: MainScreenBinding
     private val viewModel: MainViewModel by viewModels()
     private val productViewModel: ProductDetailViewModel by viewModels()
-        private lateinit var productsAdapter: ProductsAdapter
+    private lateinit var productsAdapter: ProductsAdapter
 
 
     override fun onCreateView(
@@ -36,7 +36,8 @@ class MainScreen : Fragment() {
             productsAdapter.updateList(it)
         }
 
-        binding.recyclerViewMain.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        binding.recyclerViewMain.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -63,12 +64,39 @@ class MainScreen : Fragment() {
         binding.cartIcon.setOnClickListener {
             it.findNavController().navigate(R.id.toBasketScreen)
         }
-
+        binding.technologyChip.setOnCheckedChangeListener { chip, isChecked ->
+            println("Tıklandı")
+            if (isChecked) {
+                viewModel.loadProducts("Teknoloji")
+                binding.accessoryChip.isChecked = false
+                binding.cosmeticChip.isChecked = false
+            } else {
+                viewModel.loadProducts(null) // seçim kaldırıldıysa tümünü göster
+            }
+        }
+        binding.accessoryChip.setOnCheckedChangeListener { chip, isChecked ->
+            if (isChecked) {
+                binding.technologyChip.isChecked = false
+                binding.cosmeticChip.isChecked = false
+                viewModel.loadProducts("Aksesuar")
+            } else {
+                viewModel.loadProducts(null) // seçim kaldırıldıysa tümünü göster
+            }
+        }
+        binding.cosmeticChip.setOnCheckedChangeListener { chip, isChecked ->
+            if (isChecked) {
+                binding.technologyChip.isChecked = false
+                binding.accessoryChip.isChecked = false
+                viewModel.loadProducts("Kozmetik")
+            } else {
+                viewModel.loadProducts(null) // seçim kaldırıldıysa tümünü göster
+            }
+        }
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
-      viewModel.loadProducts()
+        viewModel.loadProducts("")
     }
 }

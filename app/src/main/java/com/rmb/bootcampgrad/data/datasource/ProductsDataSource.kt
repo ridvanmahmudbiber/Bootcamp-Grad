@@ -10,9 +10,25 @@ import kotlinx.coroutines.withContext
 
 class ProductsDataSource(var productsDao: ProductsDao) {
 
-    suspend fun loadProducts(): List<Products> = withContext(Dispatchers.IO) {
+    /* suspend fun loadProducts(): List<Products> = withContext(Dispatchers.IO) {
 
-        return@withContext productsDao.getProducts().urunler
+         return@withContext productsDao.getProducts().urunler
+     }
+
+     */
+
+    suspend fun loadProducts(category: String?): List<Products> = withContext(Dispatchers.IO) {
+        val allProducts = productsDao.getProducts().urunler
+        println(allProducts)
+        allProducts.forEach {
+            println("Ürün: ${it.ad} | Kategori: '${it.kategori}'")
+        }
+        return@withContext if (category.isNullOrBlank()) {
+            allProducts
+        } else {
+            allProducts.filter { it.kategori == category }
+
+        }
     }
 
     suspend fun loadBasketProducts(): List<ProductsMyBasket>? = withContext(Dispatchers.IO) {
@@ -52,7 +68,8 @@ class ProductsDataSource(var productsDao: ProductsDao) {
         } else {
             currentList.filter {
                 it.ad.contains(searchText, ignoreCase = true) ||
-                it.marka.contains(searchText, ignoreCase = true) }
+                        it.marka.contains(searchText, ignoreCase = true)
+            }
         }
 
     }

@@ -4,20 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.screens.MainScreen" >
+    tools:context=".ui.screens.MainScreen">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/mainScreenTitle"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerViewMain"
         app:layout_constraintEnd_toStartOf="@+id/searchView"
         app:layout_constraintStart_toStartOf="@+id/recyclerViewMain"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,10 +39,11 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="6dp"
         app:layout_constraintBottom_toTopOf="@+id/customBottomBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/accessoryChip" />
 
     <LinearLayout
         android:id="@+id/customBottomBar"
@@ -125,6 +124,51 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/technologyChip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:checkable="true"
+        app:chipBackgroundColor="@color/chip_selector_color"
+        android:text="Teknoloji"
+        app:chipStrokeColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/accessoryChip"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/accessoryChip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:chipBackgroundColor="@color/chip_selector_color"
+        android:layout_marginEnd="16dp"
+        app:chipStrokeColor="@color/black"
+        android:checkable="true"
+        android:text="Aksesuar"
+        app:layout_constraintEnd_toStartOf="@+id/cosmeticChip"
+        app:layout_constraintStart_toEndOf="@+id/technologyChip"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/cosmeticChip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:chipStrokeColor="@color/black"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:chipBackgroundColor="@color/chip_selector_color"
+        android:checkable="true"
+        android:text="Kozmetik"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/accessoryChip"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
