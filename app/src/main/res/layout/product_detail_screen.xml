@@ -117,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
         app:cardCornerRadius="16dp"
-        app:cardElevation="5dp"
+        app:cardElevation="3dp"
         app:layout_constraintBottom_toTopOf="@+id/btnAddToCart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
