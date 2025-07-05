@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(var productsRepository : ProductsRepository) : ViewModel() {
+class MainViewModel @Inject constructor(var productsRepository: ProductsRepository) : ViewModel() {
     var productsList = MutableLiveData<List<Products>>()
 
     init {
@@ -20,16 +20,17 @@ class MainViewModel @Inject constructor(var productsRepository : ProductsReposit
     }
 
 
-    fun loadProducts() {
+     fun loadProducts() {
         viewModelScope.launch {
             productsList.value = productsRepository.loadProducts()
-            println(productsList.value)
         }
     }
 
     fun search(searchText: String) {
-        CoroutineScope(Dispatchers.Main).launch {
-            productsList.value = productsRepository.search(searchText)
+        viewModelScope.launch {
+            val result = productsRepository.search(searchText)
+            productsList.value = result
+            println("Result : ${productsList.value}")
         }
 
     }

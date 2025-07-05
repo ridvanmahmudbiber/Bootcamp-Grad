@@ -36,6 +36,7 @@ class BasketScreen : Fragment() {
                 binding.recyclerViewMyCart.adapter = basketProductsAdapter
                 binding.tvTotalMyCart.text = "${it?.sumOf { it.fiyat * it.siparisAdeti }} ₺"
             }
+
         }
 
         return binding.root

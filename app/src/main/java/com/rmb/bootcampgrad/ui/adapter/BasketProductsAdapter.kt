@@ -34,7 +34,8 @@ class BasketProductsAdapter(
         val url = "http://kasimadalan.pe.hu/urunler/resimler/${basketProduct.resim}"
         Glide.with(mContext).load(url).override(512,512).into(design.imageViewCardMyBasket)
 
-        design.tvBasketCartProductBrandName.text = "${basketProduct.marka} ${basketProduct.ad}"
+        design.tvBasketCartProductBrandName.text = basketProduct.marka
+        design.tvBasketCartProductName.text = basketProduct.ad
         design.tvBasketCardProductPrice.text = "${basketProduct.fiyat} ₺"
         design.tvProductQuantity.text = basketProduct.siparisAdeti.toString() // <--- adet texti
 

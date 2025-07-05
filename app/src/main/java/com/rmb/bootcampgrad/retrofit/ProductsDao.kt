@@ -40,6 +40,5 @@ interface ProductsDao {
         @Field("kullaniciAdi") kullaniciAdi: String = Constants.username
     ): CRUDResponse
 
-    suspend fun search(searchText: String): Products
 
 }

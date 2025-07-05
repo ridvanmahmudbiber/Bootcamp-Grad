@@ -7,56 +7,79 @@
     tools:context=".ui.screens.ProductDetailScreen">
 
 
-    <ImageView
-        android:id="@+id/imageViewProductDetail"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="0dp"
-        android:layout_height="350dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvProductBrand"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageViewProductDetail"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/tvProductBrand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="ProductBrand"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="8dp"
+        android:text="Casio"
         android:textSize="26sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewProductDetail" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvProductCategory"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvProductName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="ProductName"
+        android:text="Saat"
         android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvProductBrand"
         app:layout_constraintStart_toEndOf="@+id/tvProductBrand"
-        app:layout_constraintTop_toTopOf="@+id/tvProductBrand" />
+        app:layout_constraintTop_toTopOf="@+id/tvProductBrand"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tvProductCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="32dp"
         android:text="ProductCategory"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvTotalPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:text="TotalPrice"
         android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btnAddToCart"
+        app:layout_constraintEnd_toStartOf="@+id/btnAddToCart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnAddToCart" />
 
@@ -64,15 +87,15 @@
         android:id="@+id/btnAddToCart"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
-        android:paddingHorizontal="40dp"
-        android:paddingVertical="16dp"
-        android:text="ADD TO CART"
-        android:textSize="18sp"
-        app:cornerRadius="5dp"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="12dp"
+        android:text="Sepete Ekle"
+        android:textSize="22sp"
+        app:cornerRadius="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -80,7 +103,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="48dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/btnAddToCart"
@@ -115,10 +138,12 @@
         android:id="@+id/tvProductPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:text="Product Price"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="5000 TL"
         android:textSize="26sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewProductDetail" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
