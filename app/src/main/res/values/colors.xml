@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="mainColor">#7E92EF</color>
+    <color name="textColor1">#63666A</color>
+    <color name="chip_selected_bg">#E0E0E0</color>           <!-- Açık gri -->
+    <color name="chip_unselected_bg">#FFFFFF</color>         <!-- Beyaz -->
+    <color name="chip_selected_text">#000000</color>         <!-- Siyah -->
+    <color name="chip_unselected_text">#000000</color>       <!-- Siyah -->
+    <color name="chip_stroke_color">#CCCCCC</color>
+</resources>
