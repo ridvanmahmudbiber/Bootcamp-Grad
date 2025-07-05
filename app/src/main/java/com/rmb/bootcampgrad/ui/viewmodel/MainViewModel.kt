@@ -2,6 +2,7 @@ package com.rmb.bootcampgrad.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.rmb.bootcampgrad.data.entity.Products
 import com.rmb.bootcampgrad.data.repo.ProductsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,8 +21,9 @@ class MainViewModel @Inject constructor(var productsRepository : ProductsReposit
 
 
     fun loadProducts() {
-        CoroutineScope(Dispatchers.Main).launch {
+        viewModelScope.launch {
             productsList.value = productsRepository.loadProducts()
+            println(productsList.value)
         }
     }
 

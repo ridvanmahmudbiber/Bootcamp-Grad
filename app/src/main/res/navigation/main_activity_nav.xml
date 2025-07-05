@@ -34,5 +34,9 @@
         <argument
             android:name="product"
             app:argType="com.rmb.bootcampgrad.data.entity.Products" />
+        <action
+            android:id="@+id/action_productDetailScreen_to_basketScreen"
+            app:destination="@id/basketScreen" />
+
     </fragment>
 </navigation>

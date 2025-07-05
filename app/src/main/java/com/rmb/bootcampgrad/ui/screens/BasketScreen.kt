@@ -1,5 +1,6 @@
 package com.rmb.bootcampgrad.ui.screens
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,30 +16,29 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class BasketScreen : Fragment() {
     private lateinit var binding: BasketScreenBinding
-    private lateinit var viewModel: BasketViewModel
+    private val viewModel: BasketViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = BasketScreenBinding.inflate(inflater, container, false)
-
-        viewModel.productsList.observe(viewLifecycleOwner) {
-            val basketProductsAdapter = BasketProductsAdapter(requireContext(), it, viewModel)
-            binding.recyclerViewMyCart.adapter = basketProductsAdapter
-
-        }
-
         binding.recyclerViewMyCart.layoutManager = LinearLayoutManager(requireContext())
 
+        viewModel.basketProductsList.observe(viewLifecycleOwner) {
+            if (it.isNullOrEmpty()) {
+                binding.tvEmptyBasket.visibility = View.VISIBLE
+                binding.recyclerViewMyCart.visibility = View.GONE
+            } else {
+                binding.tvEmptyBasket.visibility = View.GONE
+                binding.recyclerViewMyCart.visibility = View.VISIBLE
+                val basketProductsAdapter = BasketProductsAdapter(requireContext(), it, viewModel)
+                binding.recyclerViewMyCart.adapter = basketProductsAdapter
+                binding.tvTotalMyCart.text = "${it?.sumOf { it.fiyat * it.siparisAdeti }} ₺"
+            }
+        }
 
         return binding.root
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val tempViewModel: BasketViewModel by viewModels()
-        viewModel = tempViewModel
     }
 
     override fun onResume() {

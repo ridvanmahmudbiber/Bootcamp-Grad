@@ -60,4 +60,9 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.56")
     kapt("com.google.dagger:hilt-android-compiler:2.56")
 
+    implementation("com.github.bumptech.glide:glide:4.13.2")
+
+    implementation("com.squareup.retrofit2:retrofit:2.6.0")
+    implementation("com.google.code.gson:gson:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.5.0")
 }

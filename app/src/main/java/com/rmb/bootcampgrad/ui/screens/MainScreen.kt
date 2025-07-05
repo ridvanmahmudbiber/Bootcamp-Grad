@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainScreen : Fragment() {
     private lateinit var binding: MainScreenBinding
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,8 +28,9 @@ class MainScreen : Fragment() {
     ): View? {
         binding = MainScreenBinding.inflate(inflater, container, false)
 
+
         viewModel.productsList.observe(viewLifecycleOwner) {
-            val productsAdapter = ProductsAdapter(requireContext(), it, viewModel)
+            val productsAdapter = ProductsAdapter(requireContext(), it)
             binding.recyclerViewMain.adapter = productsAdapter
 
         }
@@ -57,12 +58,6 @@ class MainScreen : Fragment() {
         return binding.root
     }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val tempViewModel: MainViewModel by viewModels()
-        viewModel = tempViewModel
-    }
 
     override fun onResume() {
         super.onResume()
