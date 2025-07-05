@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/mainColor"
+        android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,17 +22,19 @@
             android:id="@+id/closePageIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@null"
             android:src="@drawable/close"
-            app:tint="@color/textColor1" />
+            app:tint="@color/textColor1"
+            android:background="@color/white"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Sepetim"
-            android:textColor="@color/white"
-            android:textSize="26sp" />
+            android:textColor="@color/black"
+            android:textSize="24sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -45,6 +47,7 @@
         android:layout_marginBottom="16dp"
         android:paddingVertical="10dp"
         android:text="Confirm Cart"
+        android:backgroundTint="#3478B1"
         android:textSize="20sp"
         app:cornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -11,6 +11,5 @@ data class ProductsMyBasket(
     val marka: String,
     val siparisAdeti: Int,
     val kullaniciAdi: String
-) : Serializable {
-}
+) : Serializable
 

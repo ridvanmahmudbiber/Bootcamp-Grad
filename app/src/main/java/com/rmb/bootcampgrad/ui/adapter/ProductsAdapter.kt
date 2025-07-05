@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.rmb.bootcampgrad.R
+import com.rmb.bootcampgrad.core.APIPaths
 import com.rmb.bootcampgrad.data.entity.Products
 import com.rmb.bootcampgrad.databinding.MainCardDesignBinding
 import com.rmb.bootcampgrad.ui.screens.MainScreenDirections
@@ -34,10 +35,10 @@ class ProductsAdapter(
     }
 
     override fun onBindViewHolder(holder: MainCardDesignHolder, position: Int) {
-        val product = productsList.get(position)
+        val product = productsList[position]
         val design = holder.binding
 
-        val url = "http://kasimadalan.pe.hu/urunler/resimler/${product.resim}"
+        val url = "${APIPaths.imageBaseUrl}${product.resim}"
         Glide.with(mContext).load(url).override(512, 512).into(design.imageViewCardProduct)
         Log.e("ProductsAdapter", "onBindViewHolder: ${product.ad}, ${product.marka}")
         design.productBrandName.text = "${product.marka}"
@@ -63,16 +64,12 @@ class ProductsAdapter(
                 MainScreenDirections.toProductDetailScreen(product = product)
             it.findNavController().navigate(toProductDetailScreen)
         }
-
-
     }
+
     fun updateList(newList: List<Products>) {
         productsList = newList
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int {
-        return productsList.size
-    }
-
+    override fun getItemCount(): Int = productsList.size
 }

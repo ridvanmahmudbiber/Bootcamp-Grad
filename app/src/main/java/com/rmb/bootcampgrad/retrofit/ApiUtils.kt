@@ -1,12 +1,11 @@
 package com.rmb.bootcampgrad.retrofit
 
+import com.rmb.bootcampgrad.core.APIPaths
+
 class ApiUtils {
     companion object{
-        val baseUrl = "http://kasimadalan.pe.hu/"
-
         fun getProductsDao(): ProductsDao {
-            return RetrofitClient.getClient(baseUrl).create(ProductsDao::class.java)
+            return RetrofitClient.getClient(APIPaths.baseUrl).create(ProductsDao::class.java)
         }
-
     }
 }

@@ -21,13 +21,6 @@ class BasketViewModel @Inject constructor(var productsRepository : ProductsRepos
         loadBasketProducts()
     }
 
-    fun deleteFromBasket(id: Int) {
-        viewModelScope.launch {
-            productsRepository.deleteFromBasket(id)
-            loadBasketProducts()
-        }
-    }
-
     fun loadBasketProducts() {
         viewModelScope.launch {
             try {
@@ -67,4 +60,34 @@ class BasketViewModel @Inject constructor(var productsRepository : ProductsRepos
         }
     }
 
+    fun increaseQuantity(product: ProductsMyBasket) {
+        viewModelScope.launch {
+            productsRepository.addToBasket(
+                ad = product.ad,
+                fiyat = product.fiyat,
+                resim = product.resim,
+                kategori = product.kategori,
+                marka = product.marka,
+                siparisAdeti = 1 // her artırmada 1 ekle
+            )
+            loadBasketProducts()
+        }
+    }
+    fun decreaseQuantity(product: ProductsMyBasket) {
+        viewModelScope.launch {
+            val allItems = productsRepository.loadBasketProducts()
+
+            // Aynı üründen birden fazla varsa, içlerinden bir tanesini seç
+            val matchingItems = allItems?.filter {
+                it.ad == product.ad && it.marka == product.marka && it.resim == product.resim
+            }
+
+            // İlk bulunanı sil
+            matchingItems?.firstOrNull()?.let {
+                productsRepository.deleteFromBasket(it.sepetId)
+            }
+
+            loadBasketProducts()
+        }
+    }
 }

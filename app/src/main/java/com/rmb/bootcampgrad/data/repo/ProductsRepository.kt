@@ -21,6 +21,4 @@ class ProductsRepository(var productsDataSource : ProductsDataSource) {
                             fiyat: Int,
                             marka: String,
                             siparisAdeti: Int) : CRUDResponse = productsDataSource.addToBasket(ad,resim,kategori,fiyat,marka,siparisAdeti)
-
-
 }

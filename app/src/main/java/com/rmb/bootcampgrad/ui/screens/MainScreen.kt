@@ -71,5 +71,4 @@ class MainScreen : Fragment() {
         super.onResume()
       viewModel.loadProducts()
     }
-
 }

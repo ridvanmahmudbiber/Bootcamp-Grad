@@ -12,7 +12,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProductDetailViewModel @Inject constructor(var productsRepository : ProductsRepository) : ViewModel()  {
-
     fun addToBasket(ad: String,
                     resim: String,
                     kategori: String,

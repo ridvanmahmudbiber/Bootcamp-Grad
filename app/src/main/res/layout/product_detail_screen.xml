@@ -11,12 +11,22 @@
         android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="40dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toTopOf="@+id/tvProductBrand"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/closePageIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/close"
+            app:tint="@color/textColor1"
+            android:background="@null"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,6 +36,7 @@
                 android:id="@+id/imageViewProductDetail"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:backgroundTint="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -63,10 +74,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="60dp"
         android:text="ProductCategory"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/mcvProductQuantity"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -99,51 +110,65 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvProductQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
-        android:gravity="center"
-        android:orientation="horizontal"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="5dp"
         app:layout_constraintBottom_toTopOf="@+id/btnAddToCart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:cardBackgroundColor="@android:color/white"
+        app:strokeColor="@android:color/darker_gray"
+        app:strokeWidth="1dp">
 
-
-        <ImageButton
-            android:id="@+id/btnReduce"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@null"
-            android:src="@drawable/reduce" />
-
-        <TextView
-            android:id="@+id/tvProductQuantity"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:gravity="center"
-            android:text="1"
-            android:textSize="24sp" />
+            android:padding="8dp">
 
-        <ImageButton
-            android:id="@+id/btnAdd"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@null"
-            android:src="@drawable/add" />
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/btnReduce"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:src="@drawable/reduce" />
+
+            <TextView
+                android:id="@+id/tvProductQuantity"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btnAdd"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:src="@drawable/add" />
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
 
     <TextView
         android:id="@+id/tvProductPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:text="5000 TL"
         android:textSize="26sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvProductName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toTopOf="@+id/tvProductName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

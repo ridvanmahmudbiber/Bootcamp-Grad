@@ -7,7 +7,6 @@ object APIPaths{
     const val getMyBasket = "urunler/sepettekiUrunleriGetir.php"
     const val addToBasket = "urunler/sepeteUrunEkle.php"
     const val deleteFromBasket = "urunler/sepettenUrunSil.php"
-
 }
 
 object Constants{

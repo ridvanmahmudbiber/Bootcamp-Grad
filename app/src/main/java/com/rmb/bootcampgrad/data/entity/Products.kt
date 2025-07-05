@@ -10,5 +10,4 @@ data class Products(
     val kategori: String,
     val fiyat: Int,
     val marka: String
-) : Serializable {
-}
+) : Serializable

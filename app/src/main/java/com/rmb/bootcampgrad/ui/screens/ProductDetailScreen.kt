@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.rmb.bootcampgrad.R
+import com.rmb.bootcampgrad.core.APIPaths
 import com.rmb.bootcampgrad.databinding.ProductDetailScreenBinding
 import com.rmb.bootcampgrad.ui.viewmodel.ProductDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +31,7 @@ class ProductDetailScreen : Fragment() {
         val bundle: ProductDetailScreenArgs by navArgs()
         val product = bundle.product
 
-        val url = "http://kasimadalan.pe.hu/urunler/resimler/${product.resim}"
+        val url = "${APIPaths.imageBaseUrl}${product.resim}"
         Glide.with(requireContext()).load(url).override(512,512).into(binding.imageViewProductDetail)
 
         binding.tvProductName.text = product.ad
@@ -63,6 +64,11 @@ class ProductDetailScreen : Fragment() {
             binding.tvTotalPrice.text = "${product.fiyat * quantity} ₺"
         }
 
+        binding.closePageIcon.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
+
         return binding.root
     }
 
@@ -71,5 +77,4 @@ class ProductDetailScreen : Fragment() {
         val tempViewModel: ProductDetailViewModel by viewModels()
         viewModel = tempViewModel
     }
-
 }

@@ -37,6 +37,14 @@ class BasketScreen : Fragment() {
                 binding.tvTotalMyCart.text = "${it?.sumOf { it.fiyat * it.siparisAdeti }} ₺"
             }
 
+            binding.closePageIcon.setOnClickListener {
+                requireActivity().onBackPressed()
+            }
+
+            viewModel.basketProductsList.observe(viewLifecycleOwner) { basketList ->
+                val totalPrice = basketList?.sumOf { it.fiyat * it.siparisAdeti } ?: 0
+                binding.tvTotalMyCart.text = "$totalPrice ₺"
+            }
         }
 
         return binding.root

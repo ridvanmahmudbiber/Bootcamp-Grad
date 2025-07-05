@@ -19,7 +19,6 @@ class MainViewModel @Inject constructor(var productsRepository: ProductsReposito
         loadProducts()
     }
 
-
      fun loadProducts() {
         viewModelScope.launch {
             productsList.value = productsRepository.loadProducts()
@@ -32,7 +31,5 @@ class MainViewModel @Inject constructor(var productsRepository: ProductsReposito
             productsList.value = result
             println("Result : ${productsList.value}")
         }
-
     }
-
 }
